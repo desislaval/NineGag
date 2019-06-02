@@ -1,8 +1,5 @@
 package com.example.android.ninegag;
 
-import android.media.Image;
-import android.widget.ImageButton;
-
 public class PostItem {
     int imageTitle;
     int imageRes;

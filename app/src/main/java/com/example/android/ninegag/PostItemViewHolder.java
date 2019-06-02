@@ -67,5 +67,6 @@ public class PostItemViewHolder extends RecyclerView.ViewHolder {
         void onShareBtnClicked(PostItem item);
 
         void onCommentBtnCLicked(PostItem item);
+        void onBtnClicked();
     }
 }

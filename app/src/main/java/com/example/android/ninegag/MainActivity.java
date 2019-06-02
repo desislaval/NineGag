@@ -1,31 +1,26 @@
 package com.example.android.ninegag;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.android.ninegag.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    ImageButton downButton, upButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setContentView(R.layout.activity_main);
-        // upButton = findViewById(R.id.upvote_button);
-        // downButton = findViewById(R.id.downvote_button);
 
+        initRecViews();
+    }
+
+    private void initRecViews() {
         RecyclerView recyclerView = findViewById(R.id.rec_view);
         PostAdapter adapter = new PostAdapter(new PostItemViewHolder.PostItemListener() {
             @Override
@@ -55,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onShareBtnClicked(PostItem item) {
 
+
             }
 
             @Override
@@ -65,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(commentIntent);
             }
 
-
+            @Override
+            public void onBtnClicked() {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                startActivity(browserIntent);
+            }
         });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
     }
 }
